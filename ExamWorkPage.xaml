@@ -1,0 +1,72 @@
+﻿<Page x:Class="pract5_trpo.ExamWorkPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:pract5_trpo"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ExamWorkPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.RowSpan="5">
+            <Label Content="ID"/>
+            <Label Content="Студент"/>
+            <Label Content="Дисциплина"/>
+            <Label Content="Дата"/>
+            <Label Content="Итоговый бал"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.RowSpan="5">
+            <TextBlock Margin="5" Text="{Binding Id}"/>
+            <TextBox Margin="5" Text="{Binding Student, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Margin="5" Text="{Binding Discipline, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Margin="5" Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Margin="5" Text="{Binding TotalScore}"/>
+        </StackPanel>
+        <ListView Grid.ColumnSpan="3" Grid.Row="5" ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask, RelativeSource={RelativeSource AncestorType=Page}}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}" Width="200"/>
+                        <TextBlock Text="Макс: "/>
+                        <TextBlock Text="{Binding MaxScore}" Width="60"/>
+                        <TextBlock Text="Балл: "/>
+                        <TextBlock Text="{Binding Score}" Width="60"/>
+                        <TextBlock Text="%: "/>
+                        <TextBlock Text="{Binding TaskPercent}" Width="60"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.ColumnSpan="3" Grid.Row="6" Orientation="Horizontal">
+            <TextBlock Text="названиие задания" Margin="5"/>
+            <TextBlock Text="максимум балов" Margin="5"/>
+            <TextBlock Text="набрано балов" Margin="5"/>
+        </StackPanel>
+        <StackPanel Grid.ColumnSpan="3" Grid.Row="7" Orientation="Horizontal">
+            <TextBox x:Name="newTitle" Width="150" Margin="5"/>
+            <TextBox x:Name="newMax" Width="60" Margin="5"/>
+            <TextBox x:Name="newScore" Width="60" Margin="5"/>
+            <Button Content="Добавить задание" Margin="5" Click="Button_Click"/>
+            <Button Content="Удалить задание" Margin="5" Click="Button_Click_1"/>
+            <Button Content="Сохранить" Margin="5" Click="Button_Click_2"/>
+            <Button Content="Назад" Margin="5" Click="Button_Click_3"/>
+        </StackPanel>
+    </Grid>
+</Page>
